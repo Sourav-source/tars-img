@@ -9,7 +9,7 @@ function ImageCard({ img, setIsOpen, setModalDetails, setLoading }) {
   }
   return (
     <div
-      className="w-full max-w-sm border border-gray-200 rounded-lg shadow cursor-pointer"
+      className="w-full max-w-sm border border-gray-200 rounded-lg shadow cursor-pointer darken"
       style={{
         backgroundColor: img?.color,
         margin: "0 auto",

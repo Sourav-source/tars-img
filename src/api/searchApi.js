@@ -6,7 +6,7 @@ export const searchImg = async (query) => {
     setTimeout(async () => {
       try {
         const response = await axios.get(
-          `https://api.unsplash.com/search/photos?query=${query}&per_page=10&client_id=${accessKey}`
+          `https://api.unsplash.com/search/photos?query=${query}&per_page=12&client_id=${accessKey}`
         );
         if (response.status === 200) {
           resolve({ status: response.status, data: response.data });

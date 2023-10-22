@@ -9,3 +9,8 @@
  left: 50%;
  transform: translate(-50%, -50%);
 }
+
+.darken {
+  box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .7);
+  /*darkness level control - change the alpha value for the color for darken/ligheter effect */
+}
