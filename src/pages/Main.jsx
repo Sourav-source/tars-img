@@ -313,10 +313,11 @@
 // export default Register;
 
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ImageCard from "../components/ImageCard";
 import { useSelector } from "react-redux";
 import ImageModal from "../components/ImageModal";
+import { AiFillHome } from "react-icons/ai";
 
 function Main() {
   const { searchvalue } = useParams();
@@ -329,7 +330,14 @@ function Main() {
   return (
     <>
       {!loading && (
-        <h1 className="my-4 text-2xl font-bold text-gray-900">{searchvalue}</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="my-4 text-2xl font-bold text-gray-900">
+            {searchvalue}
+          </h1>
+          <Link to="/">
+            <AiFillHome size={33} />
+          </Link>
+        </div>
       )}
       {loading ? (
         <div role="status" className="loading-center">
