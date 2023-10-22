@@ -5,7 +5,7 @@ function ImageCard({ img, setIsOpen, setModalDetails, setLoading }) {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1500);
   }
   return (
     <div

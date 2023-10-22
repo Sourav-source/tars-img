@@ -16,6 +16,6 @@ export const searchImg = async (query) => {
       } catch (error) {
         reject(error);
       }
-    }, 3000);
+    }, 1500);
   });
 };
