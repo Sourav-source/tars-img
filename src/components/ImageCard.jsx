@@ -1,9 +1,11 @@
-import React from "react";
-
-function ImageCard({ img, setIsOpen, setModalDetails }) {
+function ImageCard({ img, setIsOpen, setModalDetails, setLoading }) {
   function openModal() {
     setIsOpen(true);
     setModalDetails(img);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
   }
   return (
     <div
