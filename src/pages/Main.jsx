@@ -17,7 +17,7 @@ function Main() {
     <>
       {!loading && (
         <div className="flex items-center justify-between">
-          <h1 className="my-4 text-2xl font-bold text-gray-900">
+          <h1 className="my-4 text-2xl font-bold text-gray-900 uppercase">
             {searchvalue}
           </h1>
           <Link to="/">

@@ -60,8 +60,8 @@ function SearchInput() {
         >
           Search
         </label>
-        <div className="relative w-full border-2 border-gray-300 rounded-lg">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <div className="relative w-full border-2 border-gray-300 rounded-lg max-sm:rounded-3xl">
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none max-sm:left-auto max-sm:right-0 max-sm:px-[10px] max-sm:h-[70%] max-sm:bg-gray-900 max-sm:rounded-[50%] max-sm:my-auto max-sm:mr-[10px]">
             <svg
               className="w-4 h-4 text-gray-500 dark:text-gray-400"
               aria-hidden="true"
@@ -81,7 +81,7 @@ function SearchInput() {
           <input
             type="search"
             id="default-search"
-            className="block w-[calc(100%-118px)] p-4 pl-10 text-sm text-gray-900 bg-gray-50 focus:outline-none rounded-lg"
+            className="block w-[calc(100%-118px)] p-4 pl-10 text-sm text-gray-900 bg-gray-50 focus:outline-none rounded-lg max-sm:pl-3 max-sm:w-[calc(100%-46px)] max-sm:rounded-3xl"
             placeholder="Search Images by Name ..."
             required
             value={inputValue}
@@ -89,7 +89,7 @@ function SearchInput() {
           />
           <button
             type="submit"
-            className="text-white absolute right-2.5 bottom-2.5 bg-gray-900 focus:outline-none font-semibold rounded-lg text-sm px-8 py-2"
+            className="text-white absolute right-2.5 bottom-2.5 bg-gray-900 focus:outline-none font-semibold rounded-lg text-sm px-8 py-2 max-sm:hidden"
           >
             Search
           </button>
