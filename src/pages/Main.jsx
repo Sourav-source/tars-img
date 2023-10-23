@@ -13,6 +13,8 @@ function Main() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalDetails, setModalDetails] = useState(null);
   const [isLoading, setLoading] = useState(false);
+
+  
   return (
     <>
       {!loading && (

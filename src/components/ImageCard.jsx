@@ -7,7 +7,7 @@ function ImageCard({ img, setIsOpen, setModalDetails, setLoading }) {
       setLoading(false);
     }, 1500);
   }
-  console.log(img.user.username);
+  console.log(img?.tags);
   return (
     <div
       className="w-full max-w-sm border border-gray-200 rounded-lg shadow cursor-pointer darken"

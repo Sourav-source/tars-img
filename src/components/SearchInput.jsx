@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 
 function SearchInput() {
   const [inputValue, setInputValue] = useState("");
-  const [formSubmit, setFormSubmit] = useState(false);
   const [noSearchResult, setNoSearchResult] = useState(false);
   const navigate = useNavigate();
 
@@ -15,29 +14,27 @@ function SearchInput() {
   const params = useParams();
 
   useEffect(() => {
+    setInputValue("");
     const searchVal = params.searchvalue;
-    !formSubmit && searchVal !== undefined && setNoSearchResult(false);
-    !formSubmit && searchVal !== undefined && dispatch(imageSearch(searchVal));
-  }, [params, dispatch, formSubmit]);
+    searchVal !== undefined && setNoSearchResult(false);
+    searchVal !== undefined &&
+      dispatch(imageSearch(searchVal)).then((result) => {
+        if (result?.payload.status === 200 && result?.payload.data.total > 0) {
+          toast.success(result?.payload?.status + "  SUCCESS");
+        } else if (
+          result?.payload.status === 200 &&
+          result?.payload.data.total === 0
+        ) {
+          setNoSearchResult(true);
+          navigate(`/`);
+          toast.error("No Images Found !!!");
+        } else result?.error.message && toast.error(result?.error.message);
+      });
+  }, [params, dispatch, navigate]);
 
   const submitHandler = (e) => {
-    setFormSubmit(true);
     e.preventDefault();
-    setInputValue(""); // CLEAR THE SEARCH INPUT
-    dispatch(imageSearch(inputValue)).then((result) => {
-      if (result?.payload.status === 200 && result?.payload.data.total > 0) {
-        navigate(`/s/photos/${inputValue}`);
-        toast.success(result?.payload?.status + "  SUCCESS");
-      } else if (
-        result?.payload.status === 200 &&
-        result?.payload.data.total === 0
-      ) {
-        setNoSearchResult(true);
-        navigate(`/`);
-        toast.error("No Images Found !!!");
-      } else result?.error.message && toast.error(result?.error.message);
-    });
-    setFormSubmit(false);
+    navigate(`/s/photos/${inputValue}`);
   };
 
   return (
