@@ -51,19 +51,30 @@ function ImageModal({
             alt="Loading......"
           />
           <div className="flex flex-col justify-between p-4 leading-normal text-center">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 capitalize ">
               {modalDetails?.description}
             </h5>
-            <p className="mb-3 font-normal text-gray-700">
+            <p className="mb-3 text-gray-700 capitalize font-bold">
               {modalDetails?.alt_description}
             </p>
-            <div className="flex items-center mt-2.5 mb-5 mx-auto">
+            <div className="flex items-start gap-2 mt-2.5 mb-5">
               <h5 className="text-xl font-semibold tracking-tight text-slate-900">
                 Likes
               </h5>
               <span className="bg-slate-950 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded ml-3 text-white">
                 {modalDetails?.likes}
               </span>
+            </div>
+            <div className="flex items-start gap-2 mt-2.5 mb-5">
+              <img
+                src={modalDetails?.user.profile_image.small}
+                alt=""
+                className="rounded-[50%]"
+              />
+              <h5 className="text-xl font-semibold tracking-tight text-slate-900">
+                {" "}
+                {modalDetails?.user.username}
+              </h5>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ function ImageCard({ img, setIsOpen, setModalDetails, setLoading }) {
       setLoading(false);
     }, 1500);
   }
+  console.log(img.user.username);
   return (
     <div
       className="w-full max-w-sm border border-gray-200 rounded-lg shadow cursor-pointer darken"
@@ -29,6 +30,19 @@ function ImageCard({ img, setIsOpen, setModalDetails, setLoading }) {
           <span className="bg-slate-950 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded ml-3 text-white">
             {img?.likes}
           </span>
+        </div>
+        <div className="flex items-center mt-2.5 mb-5">
+          <div className="flex gap-2">
+            <img
+              src={img.user.profile_image.small}
+              alt=""
+              className="rounded-[50%]"
+            />
+            <h5 className="text-xl font-semibold tracking-tight text-white">
+              {" "}
+              {img.user.username}
+            </h5>
+          </div>
         </div>
       </div>
     </div>
