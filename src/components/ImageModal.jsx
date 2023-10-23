@@ -75,8 +75,9 @@ function ImageModal({
                 <h5 className="text-xl font-semibold tracking-tight text-slate-900">
                   {" "}
                   {modalDetails?.user.username}
-                  {" -- "}
                 </h5>
+              </div>
+              <div className="flex items-center justify-center gap-3 mt-2.5 mb-5">
                 <h5 className="text-xl font-semibold tracking-tight text-slate-900">
                   Likes
                 </h5>
