@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { imageSearch } from "../redux/searchSlice";
 import toast from "react-hot-toast";
 
 function SearchInput() {
   const [inputValue, setInputValue] = useState("");
+  const [formSubmit, setFormSubmit] = useState(false);
+  const [noSearchResult, setNoSearchResult] = useState(false);
   const navigate = useNavigate();
 
   const location = useLocation();
   const dispatch = useDispatch();
+  const params = useParams();
+
+  useEffect(() => {
+    const searchVal = params.searchvalue;
+    !formSubmit && searchVal !== undefined && setNoSearchResult(false);
+    !formSubmit && searchVal !== undefined && dispatch(imageSearch(searchVal));
+  }, [params, dispatch, formSubmit]);
 
   const submitHandler = (e) => {
+    setFormSubmit(true);
     e.preventDefault();
+    setInputValue(""); // CLEAR THE SEARCH INPUT
     dispatch(imageSearch(inputValue)).then((result) => {
       if (result?.payload.status === 200 && result?.payload.data.total > 0) {
         navigate(`/s/photos/${inputValue}`);
@@ -21,10 +32,12 @@ function SearchInput() {
         result?.payload.status === 200 &&
         result?.payload.data.total === 0
       ) {
+        setNoSearchResult(true);
         navigate(`/`);
         toast.error("No Images Found !!!");
       } else result?.error.message && toast.error(result?.error.message);
     });
+    setFormSubmit(false);
   };
 
   return (
@@ -39,6 +52,7 @@ function SearchInput() {
           </p>
         </>
       )}
+
       <form onSubmit={submitHandler}>
         <label
           htmlFor="default-search"
@@ -69,7 +83,8 @@ function SearchInput() {
             id="default-search"
             className="block w-[calc(100%-118px)] p-4 pl-10 text-sm text-gray-900 bg-gray-50 focus:outline-none rounded-lg"
             placeholder="Search Images by Name ..."
-            required=""
+            required
+            value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
           <button
@@ -80,6 +95,16 @@ function SearchInput() {
           </button>
         </div>
       </form>
+      {noSearchResult && (
+        <div className="loading-center">
+          <h1 className="mb-2 text-3xl font-extrabold text-red-700 ">
+            OOps!! Nothing Found......
+          </h1>
+          <p className="mb-4 text-base font-semibold text-red-500">
+            Plese Provide a valid search input value
+          </p>
+        </div>
+      )}
     </>
   );
 }
