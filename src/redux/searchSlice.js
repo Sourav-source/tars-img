@@ -3,9 +3,10 @@ import { searchImg } from "../api/searchApi";
 
 export const imageSearch = createAsyncThunk(
   "image/imageSearch",
-  async (value, { rejectWithValue }) => {
+  async (payload, { rejectWithValue }) => {
+    const { value, pageNum } = payload;
     try {
-      const response = await searchImg(value);
+      const response = await searchImg(value, pageNum);
       if (response.status !== 200) rejectWithValue(response);
       return response;
     } catch (error) {
@@ -20,14 +21,14 @@ const imageSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(imageSearch.pending, (state) => {
-          state.loading = true;
-          state.image = null;
-          state.error = null;
+        state.loading = true;
+        state.image = null;
+        state.error = null;
       })
       .addCase(imageSearch.fulfilled, (state, action) => {
-          state.loading = false;
-          state.image = action.payload;
-          state.error = null;
+        state.loading = false;
+        state.image = action.payload;
+        state.error = null;
       })
       .addCase(imageSearch.rejected, (state, action) => {
         state.loading = false;

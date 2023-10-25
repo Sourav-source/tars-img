@@ -2,12 +2,12 @@ import axios from "axios";
 const accessKey = "hVYRz-TuHNY5WVuH5HbmL09aDtUBPlaSX_FFAuMPJAc";
 const IMAGES_PER_PAGE = 24;
 
-export const searchImg = async (query) => {
+export const searchImg = async (query, pageNum) => {
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
       try {
         const response = await axios.get(
-          `https://api.unsplash.com/search/photos?query=${query}&per_page=${IMAGES_PER_PAGE}&client_id=${accessKey}`
+          `https://api.unsplash.com/search/photos?query=${query}&page=${pageNum}&per_page=${IMAGES_PER_PAGE}&client_id=${accessKey}`
         );
         if (response.status === 200) {
           resolve({ status: response.status, data: response.data });

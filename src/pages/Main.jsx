@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import ImageModal from "../components/ImageModal";
 import { AiFillHome } from "react-icons/ai";
 import LoadSpinner from "../utils";
+import Pagination from "../components/Pagination";
 
 function Main() {
   const { searchvalue } = useParams();
@@ -13,11 +14,6 @@ function Main() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalDetails, setModalDetails] = useState(null);
   const [isLoading, setLoading] = useState(false);
-
-  // ---------------------------- Pagination ----------------------------
-
-  const [totalPages, setTotalPages] = useState(image?.data.total_pages);
-  const [page, setPage] = useState(1);
 
   return (
     <>
@@ -44,10 +40,10 @@ function Main() {
                   setIsOpen={setIsOpen}
                   setModalDetails={setModalDetails}
                   setLoading={setLoading}
-                  setTotalPages={setTotalPages}
                 />
               ))}
           </div>
+          <Pagination image={image} />
           <ImageModal
             setIsOpen={setIsOpen}
             modalIsOpen={modalIsOpen}
@@ -56,19 +52,9 @@ function Main() {
             setLoading={setLoading}
             isLoading={isLoading}
           />
-          <div className="flex items-center justify-center gap-10 mt-2.5 mb-5">
-            {page > 1 && (
-              <button className="px-3 py-3 text-sm font-semibold text-white capitalize bg-gray-900 rounded-lg w-max focus:outline-none">
-                Previous
-              </button>
-            )}
-            <button className="px-3 py-3 text-sm font-semibold text-white capitalize bg-gray-900 rounded-lg w-max focus:outline-none">
-              Next
-            </button>
-          </div>
         </>
       ) : !loading && error ? (
-        <div>{error?.message}</div>
+        <div>{error}</div>
       ) : null}
     </>
   );

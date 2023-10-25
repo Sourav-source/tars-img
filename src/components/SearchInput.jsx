@@ -13,28 +13,41 @@ function SearchInput() {
   const dispatch = useDispatch();
   const params = useParams();
 
+  const pageNum = params.pagenumber;
+  const searchVal = params.searchvalue;
+
   useEffect(() => {
+    let newpageNum = Number(pageNum);
     setInputValue("");
-    const searchVal = params.searchvalue;
     searchVal !== undefined && setNoSearchResult(false);
     searchVal !== undefined &&
-      dispatch(imageSearch(searchVal)).then((result) => {
-        if (result?.payload.status === 200 && result?.payload.data.total > 0) {
-          toast.success(result?.payload?.status + "  SUCCESS");
-        } else if (
-          result?.payload.status === 200 &&
-          result?.payload.data.total === 0
-        ) {
-          setNoSearchResult(true);
-          navigate(`/`);
-          toast.error("No Images Found !!!");
-        } else result?.error.message && toast.error(result?.error.message);
-      });
-  }, [params, dispatch, navigate]);
+      dispatch(imageSearch({ value: searchVal, pageNum: newpageNum })).then(
+        (result) => {
+          if (
+            result &&
+            result?.payload &&
+            result?.payload.status === 200 &&
+            result?.payload.data.total > 0
+          ) {
+            toast.success(result?.payload?.status + "  SUCCESS");
+          } else if (
+            result &&
+            result?.payload &&
+            result?.payload.status === 200 &&
+            result?.payload.data.total === 0
+          ) {
+            setNoSearchResult(true);
+            navigate(`/`);
+            toast.error("No Images Found !!!");
+          } else result?.error.message && toast.error(result?.error.message);
+        }
+      );
+  }, [pageNum, searchVal, dispatch, navigate]);
 
   const submitHandler = (e) => {
+    const page = 1;
     e.preventDefault();
-    navigate(`/s/photos/${inputValue}`);
+    navigate(`/s/photos/${inputValue}/${page}`);
   };
 
   return (

@@ -21,7 +21,8 @@ function ImageModal({
 
   function handleRequestCloseFunc(tag) {
     closeModal();
-    navigate(`/s/photos/${tag}`);
+    const page = 1;
+    navigate(`/s/photos/${tag}/${page}`);
   }
 
   if (isLoading) return <LoadSpinner />;

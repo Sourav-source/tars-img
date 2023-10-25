@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
         element: null,
       },
       {
-        path: "/s/photos/:searchvalue",
+        path: "/s/photos/:searchvalue/:pagenumber",
         element: <Main />,
       },
     ],
