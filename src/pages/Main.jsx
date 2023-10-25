@@ -14,7 +14,6 @@ function Main() {
   const [modalDetails, setModalDetails] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
-  
   return (
     <>
       {!loading && (
@@ -51,9 +50,17 @@ function Main() {
             setLoading={setLoading}
             isLoading={isLoading}
           />
+          <div className="flex items-center justify-center gap-10 mt-2.5 mb-5">
+            <button className="w-max px-3 py-3 text-sm font-semibold text-white capitalize bg-gray-900 rounded-lg focus:outline-none">
+              Previous
+            </button>
+            <button className="w-max px-3 py-3 text-sm font-semibold text-white capitalize bg-gray-900 rounded-lg focus:outline-none">
+              Next
+            </button>
+          </div>
         </>
       ) : !loading && error ? (
-        <div>{error}</div>
+        <div>{error?.message}</div>
       ) : null}
     </>
   );
