@@ -14,6 +14,11 @@ function Main() {
   const [modalDetails, setModalDetails] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
+  // ---------------------------- Pagination ----------------------------
+
+  const [totalPages, setTotalPages] = useState(image?.data.total_pages);
+  const [page, setPage] = useState(1);
+
   return (
     <>
       {!loading && (
@@ -39,6 +44,7 @@ function Main() {
                   setIsOpen={setIsOpen}
                   setModalDetails={setModalDetails}
                   setLoading={setLoading}
+                  setTotalPages={setTotalPages}
                 />
               ))}
           </div>
@@ -51,10 +57,12 @@ function Main() {
             isLoading={isLoading}
           />
           <div className="flex items-center justify-center gap-10 mt-2.5 mb-5">
-            <button className="w-max px-3 py-3 text-sm font-semibold text-white capitalize bg-gray-900 rounded-lg focus:outline-none">
-              Previous
-            </button>
-            <button className="w-max px-3 py-3 text-sm font-semibold text-white capitalize bg-gray-900 rounded-lg focus:outline-none">
+            {page > 1 && (
+              <button className="px-3 py-3 text-sm font-semibold text-white capitalize bg-gray-900 rounded-lg w-max focus:outline-none">
+                Previous
+              </button>
+            )}
+            <button className="px-3 py-3 text-sm font-semibold text-white capitalize bg-gray-900 rounded-lg w-max focus:outline-none">
               Next
             </button>
           </div>

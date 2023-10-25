@@ -1,4 +1,10 @@
-function ImageCard({ img, setIsOpen, setModalDetails, setLoading }) {
+function ImageCard({
+  img,
+  setIsOpen,
+  setModalDetails,
+  setLoading,
+  setTotalPages,
+}) {
   function openModal() {
     setIsOpen(true);
     setModalDetails(img);
@@ -7,7 +13,7 @@ function ImageCard({ img, setIsOpen, setModalDetails, setLoading }) {
       setLoading(false);
     }, 1500);
   }
-  console.log(img?.tags);
+  console.log(img);
   return (
     <div
       className="w-full max-w-sm border border-gray-200 rounded-lg shadow cursor-pointer darken"

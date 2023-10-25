@@ -18,7 +18,7 @@ const App = () => {
           },
         }}
       />
-      <div className="container mx-auto py-10 px-20 w-full h-screen p-4 pl-10 text-sm text-gray-900">
+      <div className="container w-full h-screen p-4 px-10 py-10 mx-auto text-sm text-gray-900">
         <RouterProvider router={router} />
       </div>
     </React.Fragment>
