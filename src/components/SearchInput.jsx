@@ -47,7 +47,9 @@ function SearchInput() {
   const submitHandler = (e) => {
     const page = 1;
     e.preventDefault();
-    navigate(`/s/photos/${inputValue}/${page}`);
+    inputValue !== ""
+      ? navigate(`/s/photos/${inputValue}/${page}`)
+      : toast.error("INPUT FIELDS ARE EMPTY !!");
   };
 
   return (
