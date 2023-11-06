@@ -71,7 +71,7 @@ function SearchInput() {
           Search
         </label>
         <div className="relative w-full border-2 border-gray-300 rounded-lg max-sm:rounded-3xl">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none max-sm:left-auto max-sm:right-0 max-sm:px-[10px] max-sm:h-[70%] max-sm:bg-gray-900 max-sm:rounded-[50%] max-sm:my-auto max-sm:mr-[10px]">
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none max-sm:left-auto max-sm:right-0 max-sm:px-[10px] max-sm:h-[70%] max-sm:bg-gray-900 max-sm:rounded-[50%] max-sm:my-auto max-sm:mr-[10px] max-sm:cursor-pointer" onClick={submitHandler}>
             <svg
               className="w-4 h-4 text-gray-500 dark:text-gray-400"
               aria-hidden="true"
